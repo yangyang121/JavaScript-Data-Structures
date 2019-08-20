@@ -1,1 +1,1 @@
-通过 JavaScript 实现的基础数据结构
+通过 JavaScript 实现的数据结构和算法

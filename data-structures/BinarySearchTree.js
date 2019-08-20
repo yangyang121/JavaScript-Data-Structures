@@ -97,4 +97,26 @@ class BinarySearchTree {
     }
     searchNode(this.root, key)
   }
+
+  maxDepth() {
+    const maxDepthNode = node => {
+      if (node === null) return 0
+      return 1 + Math.max(maxDepthNode(node.left), maxDepthNode(node.right))
+    }
+    return this.root === null
+      ? 0
+      : 1 +
+          Math.max(maxDepthNode(this.root.left), maxDepthNode(this.root.right))
+  }
+
+  minDepth() {
+    const minDepthNode = node => {
+      if (node === null) return 0
+      return 1 + Math.min(minDepthNode(node.left), minDepthNode(node.right))
+    }
+    return this.root === null
+      ? 0
+      : 1 +
+          Math.min(minDepthNode(this.root.left), minDepthNode(this.root.right))
+  }
 }
