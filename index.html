@@ -5,27 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <style>
+      .yy-select {
+        width: 150px;
+        height: 32px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        outline: none;
+        position: relative;
+        box-sizing: border-box;
+      }
+      .yy-select.active {
+        border-color: #134904;
+      }
+      .select-content {
+        height: 32px;
+        line-height: 32px;
+        padding-left: 13px;
+      }
+      .select-options {
+        position: absolute;
+        left: 0;
+        top: 37px;
+        width: 150px;
+        border: 1px solid #134904;
+        border-radius: 6px;
+        background-color: #fff;
+        display: none;
+      }
+      .select-options.show {
+        display: block;
+      }
+      .option-item {
+        height: 32px;
+        line-height: 32px;
+      }
+      .option-item:hover {
+        background-color: #134904;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <script src="./data-structures/BinarySearchTree.js"></script>
+    <div class="yy-select" tabindex="7">
+      <div class="select-content"></div>
+      <div class="select-options">
+        <div class="option-item" data-value="1">test one</div>
+      </div>
+    </div>
+    <button>Click Me</button>
+    <script src="./algorithms/insertionSort.js"></script>
     <script>
-      const tree = new BinarySearchTree()
-      tree.insert(11)
-      tree.insert(7)
-      tree.insert(5)
-      tree.insert(3)
-      tree.insert(9)
-      tree.insert(8)
-      tree.insert(10)
-      tree.insert(13)
-      tree.insert(12)
-      tree.insert(14)
-      tree.insert(20)
-      tree.insert(18)
-      tree.insert(25)
-      const maxDepth = tree.maxDepth()
-      const minDepth = tree.minDepth()
-      console.log(minDepth, maxDepth)
+      const select = document.querySelector(".yy-select")
+      const options = document.querySelector(".select-options")
+      const showContent = document.querySelector(".select-content")
+      const btn = document.querySelector("button")
+      let selectValue = ""
+      select.onfocus = function() {
+        this.classList.add("active")
+        options.classList.add("show")
+      }
+      select.onblur = function() {
+        options.classList.remove("show")
+        this.classList.remove("active")
+      }
+      options.onclick = function(e) {
+        showContent.innerHTML = e.target.innerHTML
+        selectValue = e.target.dataset.value
+        options.classList.remove("show")
+        select.classList.remove("active")
+      }
+      btn.onclick = function() {
+        console.log(selectValue)
+      }
     </script>
   </body>
 </html>
